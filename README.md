@@ -2,6 +2,7 @@
 This is a comprehensive and secure API built for managing library systems, developed using the Slim Framework and JWT authentication. The API allows for seamless management of users, books, and authors, ensuring efficient operations and security.
 # Features
 • User Management: Register, authenticate, and manage users with secure JWT tokens.
+
 • Book Management: Add, update, and delete books in the library catalog.
 • Author Management: Link books to authors and manage the library’s authorship.
 • Security: Data protection using JWT for authentication and BCRYPT for password hashing.
