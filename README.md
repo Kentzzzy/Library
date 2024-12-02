@@ -238,7 +238,7 @@ Authorization: Bearer <your_new_generated_token>
 }
 ```http
 {
-  "bookid": "book_id,
+  "bookid": "book_id",
   "title": "new_book_title",
   "authorid": "author_id"
 }
@@ -274,7 +274,7 @@ Authorization: Bearer <your_new_generated_token>
 ```http
 {
   "bookid": "book_id",
-  "authorid": author_id
+  "authorid": "author_id"
 }
 ```
 
