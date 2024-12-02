@@ -142,6 +142,7 @@ $app->get('/users', function (Request $request, Response $response, array $args)
         $sql = "SELECT * FROM users";
         $stmt = $conn->query($sql);
         $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
         $newToken = $request->getAttribute('newToken');
 
         $response->getBody()->write(json_encode([
@@ -182,7 +183,6 @@ $app->put('/user/{userid}', function (Request $request, Response $response, arra
     $userid = $args['userid'];
     $data = json_decode($request->getBody());
     $username = $data->username; 
-    
     $password = isset($data->password) ? password_hash($data->password, PASSWORD_BCRYPT) : null;
 
     try {
@@ -275,7 +275,7 @@ $app->get('/author/{id}', function (Request $request, Response $response, array 
         $response->getBody()->write(json_encode([
             "status" => "success",
             "data" => $data,
-            "newToken" => $newToken 
+            "newToken" => $newToken  
         ]));
     } catch (Exception $e) {
         $response->getBody()->write(json_encode([
@@ -300,7 +300,7 @@ $app->get('/author/{id}/books', function (Request $request, Response $response, 
         $response->getBody()->write(json_encode([
             "status" => "success",
             "data" => $data,
-            "newToken" => $newToken  
+            "newToken" => $newToken  // Return new token
         ]));
     } catch (Exception $e) {
         $response->getBody()->write(json_encode([
@@ -352,7 +352,7 @@ $app->delete('/author/{id}', function (Request $request, Response $response, arr
         $response->getBody()->write(json_encode([
             "status" => "success",
             "data" => null,
-            "newToken" => $newToken 
+            "newToken" => $newToken  
         ]));
     } catch (Exception $e) {
         $response->getBody()->write(json_encode([
@@ -444,6 +444,7 @@ $app->put('/book/{id}', function (Request $request, Response $response, array $a
     }
     return $response;
 })->add($jwtMiddleware);
+
 
 $app->delete('/book/{id}', function (Request $request, Response $response, array $args) {
     $id = $args['id'];
@@ -565,7 +566,7 @@ $app->delete('/books_authors/{collectionid}', function (Request $request, Respon
         $response->getBody()->write(json_encode([
             "status" => "success",
             "data" => null,
-            "newToken" => $newToken  
+            "newToken" => $newToken 
         ]));
     } catch (Exception $e) {
         $response->getBody()->write(json_encode([
@@ -576,7 +577,7 @@ $app->delete('/books_authors/{collectionid}', function (Request $request, Respon
     return $response;
 });
 
-?>
-$app->run();
 
+$app->run();
+?>
 
